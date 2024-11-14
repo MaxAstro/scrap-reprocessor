@@ -1,0 +1,16 @@
+{
+  "name": "scrap-reprocessor",
+  "version": "0.1.1",
+  "title": "Scrap Reprocessor",
+  "author": "MaxAstro",
+  "factorio_version": "2.0",
+  "dependencies": [
+    "base >= 2.0",
+    "space-age"
+  ],
+  "description": "Adds a powerful option for processing scrap as a Fulgora science reward.",
+  "package": {
+    "git_publish_branch": "main",
+    "sync_portal_details": true
+  }
+}
