@@ -1,18 +1,48 @@
 -- Scrap reprocessing technology
 local scrap_reprocessing_tech = {
 	type = "technology",
-		name = "scrap-reprocessing",
+		name = "sr-scrap-reprocessing",
+		localised_name = {"Scrap-Reprocessor-Technology.scrap-reprocessing"},
+		localised_description = {"Scrap-Reprocessor-Technology.scrap-reprocessing-description"},
 		icon_size = 128,
 		icon = "",
 		effects = 
 		{
 			{
 				type = "unlock-recipe",
-				recipe = "scrap-reprocessor"
+				recipe = "sr-scrap-reprocessor"
 			},
 			{
 				type = "unlock-recipe",
-				recipe = "scrap-reprocessing"
+				recipe = "sr-scrap-reprocessing"
+			},
+			{
+				type = "unlock-recipe",
+				recipe = "sr-electronic-scrap-reprocessing"
+			},
+			{
+				type = "unlock-recipe",
+				recipe = "sr-electronic-scrap-recycling"
+			},
+			{
+				type = "unlock-recipe",
+				recipe = "sr-metallic-scrap-reprocessing"
+			},
+			{
+				type = "unlock-recipe",
+				recipe = "sr-metallic-scrap-recycling"
+			},
+			{
+				type = "unlock-recipe",
+				recipe = "sr-architectural-scrap-reprocessing"
+			},
+			{
+				type = "unlock-recipe",
+				recipe = "sr-architectural-scrap-recycling"
+			},
+			{
+				type = "unlock-recipe",
+				recipe = "sr-mineral-slurry-separation"
 			},
 		},
 		unit = {
@@ -27,7 +57,7 @@ local scrap_reprocessing_tech = {
 			},
 			time = 60
 		},
-		prerequisites = {"electromagnetic-science-pack", "production-science-pack"},
+		prerequisites = {"electromagnetic-science-pack", "quality-module-3"},
 }
 ---@cast scrap_reprocessing_tech data.TechnologyPrototype
 
