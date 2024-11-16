@@ -3,11 +3,11 @@ local scrap_reprocessor = {
     type = "item",
     name = "sr-scrap-reprocessor",
     localised_name = {"Scrap-Reprocessor-Items-and-Entities.scrap-reprocessor"},
-    icon = "",
+    icon = "__scrap-reprocessor__/graphics/icons/chemical-stager-icon.png",
     icon_size = 64,
     subgroup = "smelting-machine",
     order = "d[reprocessor]",
-    place_result = "scrap-reprocessor",
+    place_result = "sr-scrap-reprocessor",
     stack_size = 10,
     weight = 200 * kg
 }
@@ -18,7 +18,16 @@ local electronic_scrap = {
     type = "item",
     name = "sr-electronic-scrap",
     localised_name = {"Scrap-Reprocessor-Items-and-Entities.electronic-scrap"},
-    icon = "",
+    icons = {
+      {
+        icon = "__space-age__/graphics/icons/scrap.png",
+      },
+      {
+        icon = "__base__/graphics/icons/processing-unit.png",
+        shift = {4, 4},
+        scale = 0.4
+      }
+    },
     icon_size = 64,
     subgroup = "fulgora-processes",
     order = "a[scrap]-b[electronic-scrap]",
@@ -33,7 +42,16 @@ local metallic_scrap = {
     type = "item",
     name = "sr-metallic-scrap",
     localised_name = {"Scrap-Reprocessor-Items-and-Entities.metallic-scrap"},
-    icon = "",
+    icons = {
+      {
+        icon = "__space-age__/graphics/icons/scrap.png",
+      },
+      {
+        icon = "__base__/graphics/icons/steel-plate.png",
+        shift = {4, 4},
+        scale = 0.4
+      }
+    },
     icon_size = 64,
     subgroup = "fulgora-processes",
     order = "a[scrap]-c[metallic-scrap]",
@@ -48,7 +66,16 @@ local architectural_scrap = {
     type = "item",
     name = "sr-architectural-scrap",
     localised_name = {"Scrap-Reprocessor-Items-and-Entities.architectural-scrap"},
-    icon = "",
+    icons = {
+      {
+        icon = "__space-age__/graphics/icons/scrap.png",
+      },
+      {
+        icon = "__base__/graphics/icons/low-density-structure.png",
+        shift = {4, 4},
+        scale = 0.4
+      }
+    },
     icon_size = 64,
     subgroup = "fulgora-processes",
     order = "a[scrap]-d[architectural-scrap]",
@@ -63,7 +90,7 @@ local mineral_slurry = {
     type = "fluid",
     name = "sr-mineral-slurry",
     localised_name = {"Scrap-Reprocessor-Items-and-Entities.mineral-slurry"},
-    icon = "",
+    icon = "__space-age__/graphics/icons/fluid/holmium-solution.png",
     icon_size = 64,
     subgroup = "fluid",
     order = "b[new-fluid]-c[fulgora]-b[mineral-slurry]",
