@@ -84,24 +84,48 @@ local scrap_reprocessor = {
         pipe_connections = {{ flow_direction="input-output", direction = defines.direction.east, position = {2, -1} }}
         }
     },
-    water_reflection =
+    circuit_connector = circuit_connector_definitions["assembling-machine"],
+    circuit_wire_max_distance = default_circuit_wire_max_distance,
+    created_effect=
     {
-        pictures =
-        {
-        filename = "__base__/graphics/entity/oil-refinery/oil-refinery-reflection.png",
-        priority = "extra-high",
-        width = 40,
-        height = 48,
-        shift = util.by_pixel(5, 95),
-        variation_count = 4,
-        scale = 5
-        },
-        rotate = false,
-        orientation_to_variation = true
+        type = "direct",
+        action_delivery = {
+            type = "instant",
+            source_effects = {
+                type = "script",
+                effect_id = "scrap-reprocessor-placed"
+            }
+        }
     }
 }
----@cast scrap_reprocessor data.AssemblingMachinePrototype
+
+-- Input loader
+local scrap_reprocessor_input_loader = {
+    type = "loader-1x1",
+    hidden = true,
+    collision_box = {
+        {-0.5, -0.5},
+        {0.5, 0.5}
+    },
+    collision_mask = {layers={},not_colliding_with_itself = true},
+    working_sound = nil,
+    graphics_set= nil,
+    graphics_set_flipped= nil,
+    allowed_effects= nil,
+    module_slots = nil,
+    selectable_in_game = false,
+    show_recipe_icon = false,
+    name = "scrap-reprocessor-input-loader",
+    allow_rail_interaction = false,
+    speed = 0.125,
+    filter_count = 1,
+    tile_width = 1,
+    tile_height = 1,
+    energy_source = {type = "void"},
+    energy_usage = "1kW",
+}
 
 data:extend({
-    scrap_reprocessor
+    scrap_reprocessor,
+    scrap_reprocessor_input_loader
 })
