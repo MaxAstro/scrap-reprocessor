@@ -2,7 +2,6 @@
 local scrap_reprocessing_tech = {
 	type = "technology",
 		name = "sr-scrap-reprocessing",
-		localised_name = {"Scrap-Reprocessor-Technology.scrap-reprocessing"},
 		localised_description = {"Scrap-Reprocessor-Technology.scrap-reprocessing-description"},
 		icon_size = 256,
 		icon = "__scrap-reprocessor__/graphics/icons/chemical-stager-icon-technology.png",

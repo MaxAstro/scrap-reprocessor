@@ -1,8 +1,13 @@
+-- Quality setting for scrap reprocessor
+local quality_setting = settings.startup["scrap-reprocessor-quality-setting"].value
+local quality_amount = 0
+if quality_setting == "vanilla" then quality_amount = 0.5 end
+if quality_setting == "boosted" then quality_amount = 1.0 end
+
 -- Scrap reprocessor
 local scrap_reprocessor = {
     type = "assembling-machine",
     name = "sr-scrap-reprocessor",
-    localised_name = {"Scrap-Reprocessor-Items-and-Entities.scrap-reprocessor"},
     icon = "__scrap-reprocessor__/graphics/icons/chemical-stager-icon.png",
     flags = {"placeable-neutral","player-creation"},
     minable = {mining_time = 0.2, result = "sr-scrap-reprocessor"},
@@ -17,7 +22,7 @@ local scrap_reprocessor = {
     drawing_box_vertical_extension = 0.3,
     module_slots = 6,
     allowed_effects = {"consumption", "speed", "productivity", "pollution", "quality"},
-    effect_receiver = { base_effect = { quality = 0.5 }},
+    effect_receiver = { base_effect = { quality = quality_amount }},
     crafting_categories = {"reprocessor"},
     crafting_speed = 1,
     energy_source =

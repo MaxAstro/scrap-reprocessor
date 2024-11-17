@@ -2,7 +2,6 @@
 local scrap_reprocessor = {
     type = "item",
     name = "sr-scrap-reprocessor",
-    localised_name = {"Scrap-Reprocessor-Items-and-Entities.scrap-reprocessor"},
     icon = "__scrap-reprocessor__/graphics/icons/chemical-stager-icon.png",
     icon_size = 64,
     subgroup = "smelting-machine",
@@ -17,7 +16,6 @@ local scrap_reprocessor = {
 local electronic_scrap = {
     type = "item",
     name = "sr-electronic-scrap",
-    localised_name = {"Scrap-Reprocessor-Items-and-Entities.electronic-scrap"},
     icons = {
       {
         icon = "__space-age__/graphics/icons/scrap.png",
@@ -41,7 +39,6 @@ local electronic_scrap = {
 local metallic_scrap = {
     type = "item",
     name = "sr-metallic-scrap",
-    localised_name = {"Scrap-Reprocessor-Items-and-Entities.metallic-scrap"},
     icons = {
       {
         icon = "__space-age__/graphics/icons/scrap.png",
@@ -65,7 +62,6 @@ local metallic_scrap = {
 local architectural_scrap = {
     type = "item",
     name = "sr-architectural-scrap",
-    localised_name = {"Scrap-Reprocessor-Items-and-Entities.architectural-scrap"},
     icons = {
       {
         icon = "__space-age__/graphics/icons/scrap.png",
@@ -89,8 +85,18 @@ local architectural_scrap = {
 local mineral_slurry = {
     type = "fluid",
     name = "sr-mineral-slurry",
-    localised_name = {"Scrap-Reprocessor-Items-and-Entities.mineral-slurry"},
-    icon = "__space-age__/graphics/icons/fluid/holmium-solution.png",
+    icons = {
+        {
+            icon = "__base__/graphics/icons/fluid/water.png",
+            tint = {170, 51, 106, 0.7},
+        },
+        {
+            icon = "__base__/graphics/icons/stone.png",
+            tint = {170, 51, 106, 0.7},
+            shift = {0, 4},
+            scale = 0.4
+        }
+    },
     icon_size = 64,
     subgroup = "fluid",
     order = "b[new-fluid]-c[fulgora]-b[mineral-slurry]",
