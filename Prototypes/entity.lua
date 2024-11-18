@@ -1,3 +1,5 @@
+require("pipecovers")
+
 -- Quality setting for scrap reprocessor
 local quality_setting = settings.startup["scrap-reprocessor-quality-setting"].value
 local quality_amount = 0
@@ -33,29 +35,90 @@ local scrap_reprocessor = {
     },
     energy_usage = "420kW",
 
+    integration_patch_render_layer = "above-inserters",
+    integration_patch = {
+        sheet = {
+            filename = "__scrap-reprocessor__/graphics/chemical-stager-hr-integration.png",
+            width = 320,
+            height = 320,
+            scale = 0.5,
+            frames = 1
+        }
+    },
+
     graphics_set =
     {
-        animation = {north = {
-            layers = {
-            {
-                filename = "__scrap-reprocessor__/graphics/chemical-stager-hr.png",
-                width = 320,
-                height = 320,
-                scale = 0.5
+        animation = {
+            north = {
+                layers = {
+                {
+                    filename = "__scrap-reprocessor__/graphics/chemical-stager-hr-north.png",
+                    width = 320,
+                    height = 320,
+                    scale = 0.5
+                },
+                {
+                    filename = "__scrap-reprocessor__/graphics/chemical-stager-hr-shadow.png",
+                    width = 600,
+                    height = 340,
+                    draw_as_shadow = true,
+                    scale = 0.5
+                }}
             },
-            {
-                filename = "__scrap-reprocessor__/graphics/chemical-stager-hr-shadow.png",
-                width = 600,
-                height = 340,
-                draw_as_shadow = true,
-                scale = 0.5
-            }}
-        }}
+            east = {
+                layers = {
+                {
+                    filename = "__scrap-reprocessor__/graphics/chemical-stager-hr-east.png",
+                    width = 320,
+                    height = 320,
+                    scale = 0.5
+                },
+                {
+                    filename = "__scrap-reprocessor__/graphics/chemical-stager-hr-shadow.png",
+                    width = 600,
+                    height = 340,
+                    draw_as_shadow = true,
+                    scale = 0.5
+                }}
+            },
+            south = {
+                layers = {
+                {
+                    filename = "__scrap-reprocessor__/graphics/chemical-stager-hr-south.png",
+                    width = 320,
+                    height = 320,
+                    scale = 0.5
+                },
+                {
+                    filename = "__scrap-reprocessor__/graphics/chemical-stager-hr-shadow.png",
+                    width = 600,
+                    height = 340,
+                    draw_as_shadow = true,
+                    scale = 0.5
+                }}
+            },
+            west = {
+                layers = {
+                {
+                    filename = "__scrap-reprocessor__/graphics/chemical-stager-hr-west.png",
+                    width = 320,
+                    height = 320,
+                    scale = 0.5
+                },
+                {
+                    filename = "__scrap-reprocessor__/graphics/chemical-stager-hr-shadow.png",
+                    width = 600,
+                    height = 340,
+                    draw_as_shadow = true,
+                    scale = 0.5
+                }},
+            }
+        }
     },
     impact_category = "metal-large",
     working_sound =
     {
-        sound = { filename = "__base__/sound/oil-refinery.ogg" },
+        sound = { filename = "__quality__/sound/recycler/recycler-loop.ogg" },
         fade_in_ticks = 4,
         fade_out_ticks = 20
     },
@@ -63,6 +126,7 @@ local scrap_reprocessor = {
     {
         {
         production_type = "input",
+        pipe_covers = pipecoverspictures(),
         volume = 1000,
         pipe_connections =
         {
@@ -76,15 +140,17 @@ local scrap_reprocessor = {
         {
         production_type = "output",
         volume = 100,
+        pipe_covers = pipecoverspictures(),
         pipe_connections = {{ flow_direction="input-output", direction = defines.direction.west, position = {-2, -1} }}
         },
         {
         production_type = "output",
         volume = 100,
+        pipe_covers = pipecoverspictures(),
         pipe_connections = {{ flow_direction="input-output", direction = defines.direction.east, position = {2, -1} }}
         }
     },
-    circuit_connector = circuit_connector_definitions["assembling-machine"],
+    circuit_connector = circuit_connector_definitions["mining-drill"],  -- Intentionally invalid; eventually I'll do a custom connection
     circuit_wire_max_distance = default_circuit_wire_max_distance,
     created_effect=
     {
@@ -104,20 +170,113 @@ local scrap_reprocessor_input_loader = {
     type = "loader-1x1",
     hidden = true,
     collision_box = {
-        {-0.5, -0.5},
-        {0.5, 0.5}
+        {-0.4, -0.4},
+        {0.4, 0.4}
     },
-    collision_mask = {layers={},not_colliding_with_itself = true},
     working_sound = nil,
-    graphics_set= nil,
-    graphics_set_flipped= nil,
     allowed_effects= nil,
     module_slots = nil,
     selectable_in_game = false,
     show_recipe_icon = false,
-    name = "scrap-reprocessor-input-loader",
+    name = "sr-scrap-reprocessor-input-loader",
     allow_rail_interaction = false,
     speed = 0.125,
+    animation_speed_coefficient = 32,
+    belt_animation_set = {
+        alternate = true,
+        animation_set =
+        {
+          filename = "__space-age__/graphics/entity/turbo-transport-belt/turbo-transport-belt.png",
+            priority = "extra-high",
+            size = 128,
+            scale = 0.5,
+            frame_count = 32,
+            direction_count = 20
+        },
+    },
+    structure = {
+        direction_in = {
+            sheets = {
+                {
+                    filename = "__scrap-reprocessor__/graphics/mdrn-loader-structure-base.png",
+                    priority = "extra-high",
+                    width = 192,
+                    height = 192,
+                    scale = 0.5,
+                    tint = {173, 192, 136}
+                },
+                {
+                    filename = "__scrap-reprocessor__/graphics/mdrn-loader-structure-mask.png",
+                    priority = "extra-high",
+                    width = 192,
+                    height = 192,
+                    scale = 0.5,
+                    tint = {6, 64, 43}
+                },
+                {
+                    filename = "__scrap-reprocessor__/graphics/mdrn-loader-structure-shadow.png",
+                    draw_as_shadow = true,
+                    priority = "extra-high",
+                    width = 192,
+                    height = 192,
+                    scale = 0.5,
+                }
+            }
+        },
+        direction_out = {
+            sheets = {
+                {
+                    filename = "__scrap-reprocessor__/graphics/mdrn-loader-structure-base.png",
+                    priority = "extra-high",
+                    width = 192,
+                    height = 192,
+                    scale = 0.5,
+                    y = 192,
+                    tint = {173, 192, 136}
+                },
+                {
+                    filename = "__scrap-reprocessor__/graphics/mdrn-loader-structure-mask.png",
+                    priority = "extra-high",
+                    width = 192,
+                    height = 192,
+                    scale = 0.5,
+                    y = 192,
+                    tint = {6, 64, 43}
+                },
+                {
+                    filename = "__scrap-reprocessor__/graphics/mdrn-loader-structure-shadow.png",
+                    draw_as_shadow = true,
+                    priority = "extra-high",
+                    width = 192,
+                    height = 192,
+                    scale = 0.5,
+                    y = 192
+                },
+            }
+        },
+        back_patch =
+        {
+          sheet =
+          {
+            filename = "__scrap-reprocessor__/graphics/mdrn-loader-structure-back-patch.png",
+            priority = "extra-high",
+            width = 192,
+            height = 192,
+            scale = 0.5
+          }
+        },
+        front_patch =
+        {
+          sheet =
+          {
+            filename = "__scrap-reprocessor__/graphics/mdrn-loader-structure-front-patch.png",
+            priority = "extra-high",
+            width = 192,
+            height = 192,
+            scale = 0.5
+          }
+        }
+      },
     filter_count = 1,
     tile_width = 1,
     tile_height = 1,
@@ -125,7 +284,18 @@ local scrap_reprocessor_input_loader = {
     energy_usage = "1kW",
 }
 
+-- Output loaders
+local scrap_reprocessor_output_loader_1 = table.deepcopy(scrap_reprocessor_input_loader)
+scrap_reprocessor_output_loader_1.name = "sr-scrap-reprocessor-output-loader-1"
+local scrap_reprocessor_output_loader_2 = table.deepcopy(scrap_reprocessor_input_loader)
+scrap_reprocessor_output_loader_2.name = "sr-scrap-reprocessor-output-loader-2"
+local scrap_reprocessor_output_loader_3 = table.deepcopy(scrap_reprocessor_input_loader)
+scrap_reprocessor_output_loader_3.name = "sr-scrap-reprocessor-output-loader-3"
+
 data:extend({
     scrap_reprocessor,
-    scrap_reprocessor_input_loader
+    scrap_reprocessor_input_loader,
+    scrap_reprocessor_output_loader_1,
+    scrap_reprocessor_output_loader_2,
+    scrap_reprocessor_output_loader_3
 })

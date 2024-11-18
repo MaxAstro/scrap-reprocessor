@@ -551,6 +551,7 @@ else
     data:extend({mineral_slurry_separation_recipe})
 end
 
+-- Architectural scrap output setting
 if architectural_scrap_output_setting == "vanilla" then
     data:extend({
         architectural_scrap_reprocessing_recipe_vanilla,

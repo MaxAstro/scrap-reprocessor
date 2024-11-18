@@ -9,7 +9,7 @@
     "space-age",
     "quality"
   ],
-  "description": "Adds a powerful option for processing scrap as a late Fulgora science reward.",
+  "description": "Adds a powerful new processing chain for scrap as a Fulgora science reward.",
   "package": {
     "git_publish_branch": "main",
     "sync_portal_details": true
