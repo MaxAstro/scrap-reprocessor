@@ -9,3 +9,4 @@ README.md export-ignore
 .gitignore export-ignore
 .gitattributes export-ignore
 .releaserc export-ignore
+.psd export-ignore
