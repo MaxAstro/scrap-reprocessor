@@ -166,11 +166,11 @@ function update_loader_filters()
                 scrap_reprocessor.reprocessor_loaders.output_loader_3.loader_filter_mode = "none"
                 for recipe_name, outputs in pairs (storage.repocessor_recipes) do           -- Find the stored recipe to set the filters
                     if current_recipe.name == recipe_name then
-                        scrap_reprocessor.reprocessor_loaders.output_loader_1.set_filter(1, outputs.output_1)
+                        scrap_reprocessor.reprocessor_loaders.output_loader_1.set_filter(1, {name = outputs.output_1, comparator = ">="})
                         scrap_reprocessor.reprocessor_loaders.output_loader_1.loader_filter_mode = "whitelist"
-                        scrap_reprocessor.reprocessor_loaders.output_loader_2.set_filter(1, outputs.output_2)
+                        scrap_reprocessor.reprocessor_loaders.output_loader_2.set_filter(1, {name = outputs.output_2, comparator = ">="})
                         scrap_reprocessor.reprocessor_loaders.output_loader_2.loader_filter_mode = "whitelist"
-                        scrap_reprocessor.reprocessor_loaders.output_loader_3.set_filter(1, outputs.output_3)
+                        scrap_reprocessor.reprocessor_loaders.output_loader_3.set_filter(1, {name = outputs.output_3, comparator = ">="})
                         scrap_reprocessor.reprocessor_loaders.output_loader_3.loader_filter_mode = "whitelist"
                     end
                 end
@@ -178,11 +178,11 @@ function update_loader_filters()
             elseif current_recipe and not scrap_reprocessor.last_known_recipe then
                 for recipe_name, outputs in pairs (storage.repocessor_recipes) do           -- Find the stored recipe to set the filters
                     if current_recipe.name == recipe_name then
-                        scrap_reprocessor.reprocessor_loaders.output_loader_1.set_filter(1, outputs.output_1)
+                        scrap_reprocessor.reprocessor_loaders.output_loader_1.set_filter(1, {name = outputs.output_1, comparator = ">="})
                         scrap_reprocessor.reprocessor_loaders.output_loader_1.loader_filter_mode = "whitelist"
-                        scrap_reprocessor.reprocessor_loaders.output_loader_2.set_filter(1, outputs.output_2)
+                        scrap_reprocessor.reprocessor_loaders.output_loader_2.set_filter(1, {name = outputs.output_2, comparator = ">="})
                         scrap_reprocessor.reprocessor_loaders.output_loader_2.loader_filter_mode = "whitelist"
-                        scrap_reprocessor.reprocessor_loaders.output_loader_3.set_filter(1, outputs.output_3)
+                        scrap_reprocessor.reprocessor_loaders.output_loader_3.set_filter(1, {name = outputs.output_3, comparator = ">="})
                         scrap_reprocessor.reprocessor_loaders.output_loader_3.loader_filter_mode = "whitelist"
                     end
                 end

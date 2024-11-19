@@ -194,6 +194,7 @@ local scrap_reprocessor_input_loader = {
             direction_count = 20
         },
     },
+    icon_draw_specification = {scale = 0.5},
     structure = {
         direction_in = {
             sheets = {
