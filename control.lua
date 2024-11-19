@@ -1,4 +1,3 @@
-require("scripts.recipedefines")
 require("scripts.reprocessor")
 
 -- Initialize the storage variable

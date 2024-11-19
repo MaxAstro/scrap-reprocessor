@@ -158,7 +158,7 @@ end
 ---@param recipe_quality LuaQualityPrototype?
 ---@param reprocessor_loaders reprocessor_loaders
 ---@return integer, integer
-local function update_recipe(new_recipe, recipe_quality, reprocessor_loaders)
+function update_recipe(new_recipe, recipe_quality, reprocessor_loaders)
     local item_ingredient_count = 0
     for i, ingredient in pairs(new_recipe.ingredients) do   -- Count the number of solid ingredients and set the filter if it's only one
         if ingredient.type == "item" then
@@ -219,7 +219,7 @@ local function update_recipe(new_recipe, recipe_quality, reprocessor_loaders)
     return item_ingredient_count, item_product_count    -- Not used currently, but might be useful one day
 end
 
--- Check if a loader's filters need to change their recipe
+-- on_nth_tick function to check if a loader's filters need to change their recipe
 function update_loader_filters()
     for _, scrap_reprocessor in pairs(storage.scrap_reprocessors) do
         ---@cast scrap_reprocessor scrap_reprocessors
@@ -274,9 +274,6 @@ function do_scrap_reprocessor_rotated(event)
     reprocessor_loaders = locate_loaders(scrap_reprocessor)
     align_loaders(scrap_reprocessor, reprocessor_loaders)
 end
-
--- Update the filters of the output loaders when the recipe changes
-
 
 -- Destroy the loaders when the reprocessor is destroyed
 ---@param event EventData.on_object_destroyed
