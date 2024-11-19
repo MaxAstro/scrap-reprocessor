@@ -1,17 +1,11 @@
 require("scripts.recipedefines")
 require("scripts.reprocessor")
 
----@class reprocessor_recipes<K, V>: { string: reprocessor_recipe }
-
 -- Initialize the storage variable
 local function init_globals()
     if storage.scrap_reprocessors == nil then
         storage.scrap_reprocessors = {}
     end
-    if storage.reprocessor_recipes == nil then
-        storage.reprocessor_recipes = {}     --[[@as reprocessor_recipes]]
-    end
-    default_recipes()   -- Push default recipes to recipe definitions
 end
 script.on_init(init_globals)
 script.on_configuration_changed(init_globals)

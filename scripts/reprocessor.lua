@@ -1,3 +1,8 @@
+---@class (exact) scrap_reprocessors
+---@field entity LuaEntity
+---@field reprocessor_loaders reprocessor_loaders
+---@field last_known_recipe LuaRecipe?
+
 -- Locate the loaders of a given reprocessor and return them in an array
 ---@param scrap_reprocessor LuaEntity
 ---@return reprocessor_loaders
@@ -149,52 +154,97 @@ function align_loaders(scrap_reprocessor, reprocessor_loaders)
 end
 
 -- Update the filters of the loaders when a recipe is changed
+---@param new_recipe LuaRecipe
+---@param recipe_quality LuaQualityPrototype?
+---@param reprocessor_loaders reprocessor_loaders
+---@return integer, integer
+local function update_recipe(new_recipe, recipe_quality, reprocessor_loaders)
+    local item_ingredient_count = 0
+    for i, ingredient in pairs(new_recipe.ingredients) do   -- Count the number of solid ingredients and set the filter if it's only one
+        if ingredient.type == "item" then
+            item_ingredient_count = item_ingredient_count +1
+            if item_ingredient_count == 1 then
+                reprocessor_loaders.input_loader.set_filter(1, {
+                    name = new_recipe.ingredients[i].name,
+                    quality = recipe_quality,
+                    comparator = "="
+                })
+                reprocessor_loaders.input_loader.loader_filter_mode = "whitelist"
+            elseif item_ingredient_count > 1 then       -- Someone added a recipe with too many ingredients. Give up! Filter nothing!
+                reprocessor_loaders.input_loader.set_filter(1, nil)
+                reprocessor_loaders.input_loader.loader_filter_mode = "none" 
+            end
+        end
+    end
+    local item_product_count = 0
+    for i, product in pairs(new_recipe.products) do     -- Count the number of solid products and filter as long as there are three or fewer
+        if product.type == "item" then
+            item_product_count = item_product_count +1
+            if item_product_count == 1 then             -- Set the first output loader to the first solid product
+                reprocessor_loaders.output_loader_1.set_filter(1, {
+                    name = new_recipe.ingredients[i].name,
+                    comparator = ">="
+                })
+                reprocessor_loaders.output_loader_1.loader_filter_mode = "whitelist"
+            elseif item_product_count == 2 then         -- Set the second output loader to the second solid product
+                reprocessor_loaders.output_loader_2.set_filter(1, {
+                    name = new_recipe.ingredients[i].name,
+                    comparator = ">="
+                })
+                reprocessor_loaders.output_loader_2.loader_filter_mode = "whitelist"
+            elseif item_product_count == 3 then         -- Set the third output loader to the third solid product
+                reprocessor_loaders.output_loader_2.set_filter(1, {
+                    name = new_recipe.ingredients[i].name,
+                    comparator = ">="
+                })
+                reprocessor_loaders.output_loader_2.loader_filter_mode = "whitelist"
+            elseif item_product_count > 3 then          -- Someone added a recipe with too many ingredients. Give up! Filter nothing!
+                reprocessor_loaders.output_loader_1.set_filter(1, nil)
+                reprocessor_loaders.output_loader_1.loader_filter_mode = "none"
+                reprocessor_loaders.output_loader_2.set_filter(1, nil)
+                reprocessor_loaders.output_loader_2.loader_filter_mode = "none"
+                reprocessor_loaders.output_loader_3.set_filter(1, nil)
+                reprocessor_loaders.output_loader_3.loader_filter_mode = "none"
+            end
+        end
+    end
+    if item_product_count == 0 then                 -- Someone added a recipe with no solid ingredients. Give up! Filter nothing!
+        reprocessor_loaders.output_loader_1.set_filter(1, nil)
+        reprocessor_loaders.output_loader_1.loader_filter_mode = "none"
+        reprocessor_loaders.output_loader_2.set_filter(1, nil)
+        reprocessor_loaders.output_loader_2.loader_filter_mode = "none"
+        reprocessor_loaders.output_loader_3.set_filter(1, nil)
+        reprocessor_loaders.output_loader_3.loader_filter_mode = "none"
+    end
+    return item_ingredient_count, item_product_count    -- Not used currently, but might be useful one day
+end
+
+-- Check if a loader's filters need to change their recipe
 function update_loader_filters()
     for _, scrap_reprocessor in pairs(storage.scrap_reprocessors) do
+        ---@cast scrap_reprocessor scrap_reprocessors
         if scrap_reprocessor.entity and scrap_reprocessor.reprocessor_loaders       -- Nil check *everything*
                 and scrap_reprocessor.reprocessor_loaders.output_loader_1
                 and scrap_reprocessor.reprocessor_loaders.output_loader_2
                 and scrap_reprocessor.reprocessor_loaders.output_loader_3 then
-            local current_recipe = scrap_reprocessor.entity.get_recipe()            -- Check if the recipe has changed
+            local current_recipe, recipe_quality = scrap_reprocessor.entity.get_recipe()    -- Grab the current recipe and quality
             if current_recipe and scrap_reprocessor.last_known_recipe
-                    and current_recipe.name ~= scrap_reprocessor.last_known_recipe.name then
-                scrap_reprocessor.reprocessor_loaders.output_loader_1.set_filter(1, nil)    -- Clear the filters first in case an unknown recipe is set
+                    and current_recipe.name ~= scrap_reprocessor.last_known_recipe.name then            -- Do both current and last recipe exist but they don't match?
+                update_recipe(current_recipe, recipe_quality, scrap_reprocessor.reprocessor_loaders)    -- Yes, update the recipe
+                scrap_reprocessor.last_known_recipe = current_recipe                                    -- And our record of the last known recipe
+
+            elseif current_recipe and not scrap_reprocessor.last_known_recipe then                      -- Does the current recipe exist but no recipe has been set before?
+                update_recipe(current_recipe, recipe_quality, scrap_reprocessor.reprocessor_loaders)    -- Yes, update the recipe
+                scrap_reprocessor.last_known_recipe = current_recipe                                    -- And our record of the last known recipe
+
+            elseif not current_recipe and scrap_reprocessor.last_known_recipe then                      -- Was there a recipe but now there isn't?
+                scrap_reprocessor.reprocessor_loaders.output_loader_1.set_filter(1, nil)                -- Clear the filters because no recipe is set
                 scrap_reprocessor.reprocessor_loaders.output_loader_1.loader_filter_mode = "none"
                 scrap_reprocessor.reprocessor_loaders.output_loader_2.set_filter(1, nil)
                 scrap_reprocessor.reprocessor_loaders.output_loader_2.loader_filter_mode = "none"
                 scrap_reprocessor.reprocessor_loaders.output_loader_3.set_filter(1, nil)
                 scrap_reprocessor.reprocessor_loaders.output_loader_3.loader_filter_mode = "none"
-                for recipe_name, outputs in pairs (storage.repocessor_recipes) do           -- Find the stored recipe to set the filters
-                    if current_recipe.name == recipe_name then
-                        scrap_reprocessor.reprocessor_loaders.output_loader_1.set_filter(1, {name = outputs.output_1, comparator = ">="})
-                        scrap_reprocessor.reprocessor_loaders.output_loader_1.loader_filter_mode = "whitelist"
-                        scrap_reprocessor.reprocessor_loaders.output_loader_2.set_filter(1, {name = outputs.output_2, comparator = ">="})
-                        scrap_reprocessor.reprocessor_loaders.output_loader_2.loader_filter_mode = "whitelist"
-                        scrap_reprocessor.reprocessor_loaders.output_loader_3.set_filter(1, {name = outputs.output_3, comparator = ">="})
-                        scrap_reprocessor.reprocessor_loaders.output_loader_3.loader_filter_mode = "whitelist"
-                    end
-                end
-                scrap_reprocessor.last_known_recipe = current_recipe        -- Update our record of the last known recipe
-            elseif current_recipe and not scrap_reprocessor.last_known_recipe then
-                for recipe_name, outputs in pairs (storage.repocessor_recipes) do           -- Find the stored recipe to set the filters
-                    if current_recipe.name == recipe_name then
-                        scrap_reprocessor.reprocessor_loaders.output_loader_1.set_filter(1, {name = outputs.output_1, comparator = ">="})
-                        scrap_reprocessor.reprocessor_loaders.output_loader_1.loader_filter_mode = "whitelist"
-                        scrap_reprocessor.reprocessor_loaders.output_loader_2.set_filter(1, {name = outputs.output_2, comparator = ">="})
-                        scrap_reprocessor.reprocessor_loaders.output_loader_2.loader_filter_mode = "whitelist"
-                        scrap_reprocessor.reprocessor_loaders.output_loader_3.set_filter(1, {name = outputs.output_3, comparator = ">="})
-                        scrap_reprocessor.reprocessor_loaders.output_loader_3.loader_filter_mode = "whitelist"
-                    end
-                end
-                scrap_reprocessor.last_known_recipe = current_recipe        -- Update our record of the last known recipe
-            elseif not current_recipe and scrap_reprocessor.last_known_recipe then
-                scrap_reprocessor.reprocessor_loaders.output_loader_1.set_filter(1, nil)    -- Clear the filters because no recipe is set
-                scrap_reprocessor.reprocessor_loaders.output_loader_1.loader_filter_mode = "none"
-                scrap_reprocessor.reprocessor_loaders.output_loader_2.set_filter(1, nil)
-                scrap_reprocessor.reprocessor_loaders.output_loader_2.loader_filter_mode = "none"
-                scrap_reprocessor.reprocessor_loaders.output_loader_3.set_filter(1, nil)
-                scrap_reprocessor.reprocessor_loaders.output_loader_3.loader_filter_mode = "none"
-                scrap_reprocessor.last_known_recipe = nil                                   -- Clear the record too
+                scrap_reprocessor.last_known_recipe = nil                                               -- Clear the record too
             end
         end
     end
@@ -212,7 +262,7 @@ function do_scrap_reprocessor_placed(event)
         entity = scrap_reprocessor,
         reprocessor_loaders = reprocessor_loaders,
         last_known_recipe = nil
-    }
+    }   --[[@as scrap_reprocessors]]
     storage.scrap_reprocessors[id].reprocessor_loaders = align_loaders(scrap_reprocessor)
 end
 
