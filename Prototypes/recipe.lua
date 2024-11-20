@@ -431,7 +431,7 @@ local mineral_slurry_separation_recipe = {
     icons = {
         {
             icon = "__base__/graphics/icons/fluid/water.png",
-            tint = {170, 51, 106, 0.7},
+            tint = {170, 51, 106},
             shift = {0, -8},
             scale = 0.2
         },
@@ -491,7 +491,7 @@ local mineral_slurry_separation_recipe_with_iron = {
     icons = {
         {
             icon = "__base__/graphics/icons/fluid/water.png",
-            tint = {170, 51, 106, 0.7},
+            tint = {170, 51, 106},
             shift = {0, -8},
             scale = 0.2
         },

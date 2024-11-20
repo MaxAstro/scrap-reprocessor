@@ -88,7 +88,7 @@ local mineral_slurry = {
     icons = {
         {
             icon = "__base__/graphics/icons/fluid/water.png",
-            tint = {170, 51, 106, 0.7},
+            tint = {170, 51, 106},
         },
         {
             icon = "__base__/graphics/icons/stone.png",
