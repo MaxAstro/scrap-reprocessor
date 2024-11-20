@@ -7,6 +7,27 @@ if architectural_scrap_output_setting == "boosted" then
     architectural_scrap_slurry_max = 50
 end
 
+-- Innate quality setting
+local scrap_reprocesser_ingredients = {}
+if settings.startup["scrap-reprocessor-quality-setting"].value == "none" then
+    scrap_reprocesser_ingredients = {
+        {type = "item", name = "holmium-plate", amount = 50},
+        {type = "item", name = "steel-plate", amount = 100},
+        {type = "item", name = "processing-unit", amount = 25},
+        {type = "item", name = "superconductor", amount = 50},
+        {type = "item", name = "refined-concrete", amount = 100}
+    }
+else
+    scrap_reprocesser_ingredients = {
+        {type = "item", name = "holmium-plate", amount = 50},
+        {type = "item", name = "steel-plate", amount = 100},
+        {type = "item", name = "processing-unit", amount = 25},
+        {type = "item", name = "superconductor", amount = 50},
+        {type = "item", name = "refined-concrete", amount = 100},
+        {type = "item", name = "quality-module-3", amount = 4}
+    }
+end
+
 -- Scrap reprocessor recipe
 local scrap_reprocessor_recipe = {
     type = "recipe",
@@ -18,14 +39,7 @@ local scrap_reprocessor_recipe = {
     surface_conditions = {
         {property = "magnetic-field", min = 99}
     },
-    ingredients = {
-        {type = "item", name = "holmium-plate", amount = 50},
-        {type = "item", name = "steel-plate", amount = 100},
-        {type = "item", name = "processing-unit", amount = 25},
-        {type = "item", name = "superconductor", amount = 50},
-        {type = "item", name = "refined-concrete", amount = 100},
-        {type = "item", name = "quality-module-3", amount = 4}
-    },
+    ingredients = scrap_reprocesser_ingredients,
     results = {
         {type = "item", name = "sr-scrap-reprocessor", amount = 1}
     }
@@ -545,7 +559,7 @@ data:extend({
 })
 
 -- Mineral slurry iron ore setting
-if settings.startup["scrap-reprocessor-mineral-slurry-setting"].value then
+if not settings.startup["scrap-reprocessor-mineral-slurry-setting"].value then
     data:extend({mineral_slurry_separation_recipe_with_iron})
 else
     data:extend({mineral_slurry_separation_recipe})

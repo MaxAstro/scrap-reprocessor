@@ -33,7 +33,7 @@ local scrap_reprocessor = {
         usage_priority = "secondary-input",
         emissions_per_minute = { pollution = 6 }
     },
-    energy_usage = "420kW",
+    energy_usage = "680kW",
 
     integration_patch_render_layer = "above-inserters",
     integration_patch = {

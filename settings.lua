@@ -27,7 +27,7 @@ local architectural_scrap_setting = {
     }
 }
 
--- Mineral slurry also produces iron ore
+-- Mineral slurry doesn't produce iron ore
 local mineral_slurry_setting = {
     type = "bool-setting",
     name = "scrap-reprocessor-mineral-slurry-setting",

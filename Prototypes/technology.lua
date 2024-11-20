@@ -1,3 +1,11 @@
+-- Innate quality setting
+local scrap_reprocessing_tech_prereqs = {}
+if settings.startup["scrap-reprocessor-quality-setting"].value == "none" then
+    scrap_reprocessing_tech_prereqs = {"electromagnetic-science-pack", "production-science-pack"}
+else
+    scrap_reprocessing_tech_prereqs = {"electromagnetic-science-pack", "quality-module-3"}
+end
+
 -- Scrap reprocessing technology
 local scrap_reprocessing_tech = {
 	type = "technology",
@@ -56,8 +64,7 @@ local scrap_reprocessing_tech = {
 			},
 			time = 60
 		},
-		prerequisites = {"electromagnetic-science-pack", "quality-module-3"},
+		prerequisites = scrap_reprocessing_tech_prereqs
 }
----@cast scrap_reprocessing_tech data.TechnologyPrototype
 
 data:extend{scrap_reprocessing_tech}
