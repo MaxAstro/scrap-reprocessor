@@ -182,22 +182,22 @@ function update_recipe(new_recipe, recipe_quality, reprocessor_loaders)
             item_product_count = item_product_count +1
             if item_product_count == 1 then             -- Set the first output loader to the first solid product
                 reprocessor_loaders.output_loader_1.set_filter(1, {
-                    name = new_recipe.ingredients[i].name,
+                    name = new_recipe.products[i].name,
                     comparator = ">="
                 })
                 reprocessor_loaders.output_loader_1.loader_filter_mode = "whitelist"
             elseif item_product_count == 2 then         -- Set the second output loader to the second solid product
                 reprocessor_loaders.output_loader_2.set_filter(1, {
-                    name = new_recipe.ingredients[i].name,
+                    name = new_recipe.products[i].name,
                     comparator = ">="
                 })
                 reprocessor_loaders.output_loader_2.loader_filter_mode = "whitelist"
             elseif item_product_count == 3 then         -- Set the third output loader to the third solid product
-                reprocessor_loaders.output_loader_2.set_filter(1, {
-                    name = new_recipe.ingredients[i].name,
+                reprocessor_loaders.output_loader_3.set_filter(1, {
+                    name = new_recipe.products[i].name,
                     comparator = ">="
                 })
-                reprocessor_loaders.output_loader_2.loader_filter_mode = "whitelist"
+                reprocessor_loaders.output_loader_3.loader_filter_mode = "whitelist"
             elseif item_product_count > 3 then          -- Someone added a recipe with too many ingredients. Give up! Filter nothing!
                 reprocessor_loaders.output_loader_1.set_filter(1, nil)
                 reprocessor_loaders.output_loader_1.loader_filter_mode = "none"

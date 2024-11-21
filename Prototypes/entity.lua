@@ -1,5 +1,3 @@
-require("pipecovers")
-
 -- Quality setting for scrap reprocessor
 local quality_setting = settings.startup["scrap-reprocessor-quality-setting"].value
 local quality_amount = 0
