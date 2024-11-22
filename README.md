@@ -1,6 +1,6 @@
 # Scrap Reprocessor
 
-In an attempt to make late-stage Fulgora builds more interesting and reward the player for mastering the planet, this mod adds a powerful new option for processesing scrap once you have electromagnetic science packs. The mod's goal is to introduce new and interesting automation challenges that reward smart setups by giving higher yields than normal scrap recycling.
+In an attempt to make late-stage Fulgora builds more interesting and reward the player for mastering the planet, this mod adds a powerful new option for processing scrap once you have electromagnetic science packs. The mod's goal is to introduce new and interesting automation challenges that reward smart setups by giving higher yields than normal scrap recycling.
 
 ## Features
 
