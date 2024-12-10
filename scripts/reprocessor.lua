@@ -223,10 +223,20 @@ end
 function update_loader_filters()
     for _, scrap_reprocessor in pairs(storage.scrap_reprocessors) do
         ---@cast scrap_reprocessor scrap_reprocessors
-        if scrap_reprocessor.entity and scrap_reprocessor.reprocessor_loaders       -- Nil check *everything*
+        if scrap_reprocessor.entity and scrap_reprocessor.entity.valid                      -- Nil check *everything*
+                and scrap_reprocessor.entity.active and scrap_reprocessor.reprocessor_loaders
+                and scrap_reprocessor.reprocessor_loaders.input_loader
+                and scrap_reprocessor.reprocessor_loaders.input_loader.valid
+                and scrap_reprocessor.reprocessor_loaders.input_loader.active
                 and scrap_reprocessor.reprocessor_loaders.output_loader_1
+                and scrap_reprocessor.reprocessor_loaders.output_loader_1.valid
+                and scrap_reprocessor.reprocessor_loaders.output_loader_1.active
                 and scrap_reprocessor.reprocessor_loaders.output_loader_2
-                and scrap_reprocessor.reprocessor_loaders.output_loader_3 then
+                and scrap_reprocessor.reprocessor_loaders.output_loader_2.valid
+                and scrap_reprocessor.reprocessor_loaders.output_loader_2.active
+                and scrap_reprocessor.reprocessor_loaders.output_loader_3
+                and scrap_reprocessor.reprocessor_loaders.output_loader_3.valid
+                and scrap_reprocessor.reprocessor_loaders.output_loader_3.active then
             local current_recipe, recipe_quality = scrap_reprocessor.entity.get_recipe()    -- Grab the current recipe and quality
             if current_recipe and scrap_reprocessor.last_known_recipe
                     and current_recipe.name ~= scrap_reprocessor.last_known_recipe.name then            -- Do both current and last recipe exist but they don't match?

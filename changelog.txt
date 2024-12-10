@@ -1,4 +1,9 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.0.2
+Date: 2024-11-21
+  Bugfixes:
+    - Fixed an issue that could cause a crash if multiple reprocessors were marked for deconstruction at once
+---------------------------------------------------------------------------------------------------
 Version: 1.0.1
 Date: 2024-11-21
   Bugfixes:
