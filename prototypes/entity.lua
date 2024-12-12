@@ -1,8 +1,8 @@
 -- Quality setting for scrap reprocessor
 local quality_setting = settings.startup["scrap-reprocessor-quality-setting"].value
 local quality_amount = 0
-if quality_setting == "vanilla" then quality_amount = 0.5 end
-if quality_setting == "boosted" then quality_amount = 1.0 end
+if quality_setting == "vanilla" then quality_amount = 1.0 end
+if quality_setting == "boosted" then quality_amount = 2.0 end
 
 -- Scrap reprocessor
 local scrap_reprocessor = {

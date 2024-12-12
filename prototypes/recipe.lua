@@ -94,7 +94,7 @@ local scrap_reprocessing_recipe = {
         {type = "item", name = "sr-architectural-scrap",  amount_min = 5, amount_max = 15, probability = 0.75, show_details_in_recipe_tooltip = false},
         {type = "fluid", name = "sr-mineral-slurry",      amount_min = 20, amount_max = 40, show_details_in_recipe_tooltip = false}
     },
-    allow_productivity = true 
+    allow_productivity = true
 }
 
 -- Electronic scrap reprocessing recipe
@@ -136,7 +136,7 @@ local electronic_scrap_reprocessing_recipe = {
         {type = "item", name = "battery",               amount_min = 4, amount_max = 12, probability = 0.3, show_details_in_recipe_tooltip = false},
         {type = "fluid", name = "sr-mineral-slurry",    amount_min = 10, amount_max = 20, show_details_in_recipe_tooltip = false}
     },
-    allow_productivity = true 
+    allow_productivity = true
 }
 
 -- Electronic scrap recycling recipe
@@ -217,7 +217,7 @@ local metallic_scrap_reprocessing_recipe = {
         {type = "item", name = "copper-cable",          amount_min = 10, amount_max = 30, probability = 0.1, show_details_in_recipe_tooltip = false},
         {type = "fluid", name = "sr-mineral-slurry",    amount_min = 10, amount_max = 20, show_details_in_recipe_tooltip = false}
     },
-    allow_productivity = true  
+    allow_productivity = true
 }
 
 -- Metallic scrap recycling recipe
@@ -298,7 +298,7 @@ local architectural_scrap_reprocessing_recipe_vanilla = {
         {type = "item", name = "ice",                     amount_min = 10, amount_max = 30, probability = 0.12, show_details_in_recipe_tooltip = false},
         {type = "fluid", name = "sr-mineral-slurry",      amount_min = 10, amount_max = 20, show_details_in_recipe_tooltip = false}
     },
-    allow_productivity = true 
+    allow_productivity = true
 }
 
 -- Architectural scrap reprocessing recipe, default outputs version
@@ -340,7 +340,7 @@ local architectural_scrap_reprocessing_recipe = {
         {type = "item", name = "iron-stick",            amount_min = 5, amount_max = 15, probability = 0.24, show_details_in_recipe_tooltip = false},
         {type = "fluid", name = "sr-mineral-slurry",    amount_min = architectural_scrap_slurry_min, amount_max = architectural_scrap_slurry_max, show_details_in_recipe_tooltip = false}
     },
-    allow_productivity = true 
+    allow_productivity = true
 }
 
 -- Architectural scrap recycling recipe, vanilla version
@@ -422,7 +422,7 @@ local architectural_scrap_recycling_recipe = {
 }
 
 -- Mineral slurry separation recipe
-local mineral_slurry_separation_recipe = {    
+local mineral_slurry_separation_recipe = {
     type = "recipe",
     name = "sr-mineral-slurry-separation",
     category = "chemistry",
@@ -472,6 +472,7 @@ local mineral_slurry_separation_recipe = {
     allow_productivity = true,
     main_product = "",
     enabled = false,
+    allow_decomposition = false,
     crafting_machine_tint =
     {
         primary = {r = 0.598, g = 0.274, b = 0.501, a = 0.502}, -- #98457f80
@@ -482,7 +483,7 @@ local mineral_slurry_separation_recipe = {
 }
 
 -- Mineral slurry separation recipe with iron
-local mineral_slurry_separation_recipe_with_iron = {    
+local mineral_slurry_separation_recipe_with_iron = {
     type = "recipe",
     name = "sr-mineral-slurry-separation",
     category = "chemistry",
@@ -538,6 +539,7 @@ local mineral_slurry_separation_recipe_with_iron = {
     allow_productivity = true,
     main_product = "",
     enabled = false,
+    allow_decomposition = false,
     crafting_machine_tint =
     {
         primary = {r = 0.598, g = 0.274, b = 0.501, a = 0.502}, -- #98457f80
