@@ -1,4 +1,6 @@
 require("prototypes.item")
+require("prototypes.item-advanced")
 require("prototypes.entity")
 require("prototypes.recipe")
+require("prototypes.recipe-advanced")
 require("prototypes.technology")

@@ -146,7 +146,7 @@ local scrap_reprocessor = {
         volume = 100,
         pipe_covers = pipecoverspictures(),
         pipe_connections = {{ flow_direction="input-output", direction = defines.direction.east, position = {2, -1} }}
-        }
+        },
     },
     circuit_connector = circuit_connector_definitions["mining-drill"],  -- Intentionally invalid; eventually I'll do a custom connection
     circuit_wire_max_distance = default_circuit_wire_max_distance,

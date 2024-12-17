@@ -1,8 +1,14 @@
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.3
 Date: ????
+  Major Features:
+    - Added a technology that unlocks more advanced uses of the reprocessor on other planets
+    - Added a production chain for separating lava into molten metals that uses notably less calcite
+    - Added a complex production chain for efficiently quality upcycling scrap, tungsten, and uranium on Gleba (yes, Gleba)
   Changes:
+    - Renamed scrap reprocessor to just reprocessor (mod name unchanged)
     - Increased the reprocessor's innate quality from 5% to 10%
+    - Mineral slurry can now be barrelled, to facilitate advanced reprocessor recipes that require interplanetary logistics
   Bugfixes:
     - Mineral slurry separation is no longer allowed to be used to calculate recipe costs in the crafting menu
 ---------------------------------------------------------------------------------------------------

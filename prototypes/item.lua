@@ -10,7 +10,6 @@ local scrap_reprocessor = {
     stack_size = 10,
     weight = 200 * kg
 }
----@cast scrap_reprocessor data.ItemPrototype
 
 -- Electronic Scrap
 local electronic_scrap = {
@@ -33,7 +32,6 @@ local electronic_scrap = {
     default_import_location = "fulgora",
     weight = 2*kg
 }
----@cast electronic_scrap data.ItemPrototype
 
 -- Metallic Scrap
 local metallic_scrap = {
@@ -56,7 +54,6 @@ local metallic_scrap = {
     default_import_location = "fulgora",
     weight = 2*kg
 }
----@cast metallic_scrap data.ItemPrototype
 
 -- Architectural Scrap
 local architectural_scrap = {
@@ -79,7 +76,6 @@ local architectural_scrap = {
     default_import_location = "fulgora",
     weight = 2*kg
 }
----@cast architectural_scrap data.ItemPrototype
 
 -- Mineral Slurry
 local mineral_slurry = {
@@ -105,9 +101,8 @@ local mineral_slurry = {
     heat_capacity = "0.01kJ",
     base_color = {150, 20, 100},
     flow_color = {150, 20, 100},
-    auto_barrel = false
+    auto_barrel = true
 }
----@cast mineral_slurry data.ItemPrototype
 
 data:extend({
     scrap_reprocessor,

@@ -65,16 +65,16 @@ local scrap_reprocessing_recipe = {
         {
             icon = "__space-age__/graphics/icons/scrap.png",
             shift = {-4, -4},
-            scale = 0.4
+            scale = 0.3
         },
         {
             icon = "__space-age__/graphics/icons/scrap.png",
-            scale = 0.4
+            scale = 0.3
         },
         {
             icon = "__space-age__/graphics/icons/scrap.png",
             shift = {4, 4},
-            scale = 0.4
+            scale = 0.3
         },
         {
             icon = "__quality__/graphics/icons/recycling-top.png"
