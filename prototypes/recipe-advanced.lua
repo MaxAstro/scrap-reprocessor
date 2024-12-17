@@ -39,8 +39,8 @@ local slurry_culturization = {
     results =
     {
         {type = "item", name="stone",               amount_min = 15, amount_max = 25, show_details_in_recipe_tooltip = false},
-        {type = "item", name="iron-bacteria",       amount_min = 2, amount_max = 8, show_details_in_recipe_tooltip = false},
-        {type = "item", name="copper-bacteria",     amount_min = 2, amount_max = 8, show_details_in_recipe_tooltip = false},
+        {type = "item", name="iron-bacteria",       amount_min = 6, amount_max = 10, show_details_in_recipe_tooltip = false},
+        {type = "item", name="copper-bacteria",     amount_min = 6, amount_max = 10, show_details_in_recipe_tooltip = false},
         {type = "fluid", name="sr-cultured-slurry", amount = 280}
     },
     allow_productivity = true,
@@ -103,13 +103,13 @@ local scrap_bioleech_wash = {
     ingredients =
     {
         {type = "fluid", name="sr-cultured-slurry", amount = 70},
-        {type = "item", name="scrap",               amount = 60}
+        {type = "item", name="holmium-plate",       amount = 60}
     },
     results =
     {
-        {type = "item", name="scrap",                   amount_min = 42, amount_max = 60, show_details_in_recipe_tooltip = false},
-        {type = "item", name="iron-ore",                amount_min = 4, amount_max = 10, show_details_in_recipe_tooltip = false},
-        {type = "item", name="copper-ore",              amount_min = 4, amount_max = 10, show_details_in_recipe_tooltip = false},
+        {type = "item", name="holmium-plate",           amount_min = 36, amount_max = 60, show_details_in_recipe_tooltip = false},
+        {type = "item", name="iron-ore",                amount_min = 2, amount_max = 8, show_details_in_recipe_tooltip = false},
+        {type = "item", name="copper-ore",              amount_min = 2, amount_max = 8, show_details_in_recipe_tooltip = false},
         {type = "fluid", name="sr-biological-waste",    amount = 60}
     },
     allow_productivity = false,
@@ -169,7 +169,7 @@ local tungsten_bioleech_wash = {
     },
     results =
     {
-        {type = "item", name="tungsten-ore",            amount_min = 42, amount_max = 60, show_details_in_recipe_tooltip = false},
+        {type = "item", name="tungsten-ore",            amount_min = 36, amount_max = 60, show_details_in_recipe_tooltip = false},
         {type = "item", name="iron-ore",                amount_min = 4, amount_max = 10, show_details_in_recipe_tooltip = false},
         {type = "item", name="copper-ore",              amount_min = 4, amount_max = 10, show_details_in_recipe_tooltip = false},
         {type = "fluid", name="sr-biological-waste",    amount = 60}
@@ -231,7 +231,7 @@ local uranium_bioleech_wash = {
     },
     results =
     {
-        {type = "item", name="uranium-ore",             amount_min = 42, amount_max = 60, show_details_in_recipe_tooltip = false},
+        {type = "item", name="uranium-ore",             amount_min = 36, amount_max = 60, show_details_in_recipe_tooltip = false},
         {type = "item", name="iron-ore",                amount_min = 4, amount_max = 10, show_details_in_recipe_tooltip = false},
         {type = "item", name="copper-ore",              amount_min = 4, amount_max = 10, show_details_in_recipe_tooltip = false},
         {type = "fluid", name="sr-biological-waste",    amount = 60}

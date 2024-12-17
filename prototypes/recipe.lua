@@ -1,10 +1,10 @@
 -- Architectural scrap output amount setting
 local architectural_scrap_output_setting = settings.startup["scrap-reprocessor-architectural-setting"].value
-local architectural_scrap_slurry_min = 10
-local architectural_scrap_slurry_max = 20
+local architectural_scrap_slurry_min = 15
+local architectural_scrap_slurry_max = 25
 if architectural_scrap_output_setting == "boosted" then
-    architectural_scrap_slurry_min = 30
-    architectural_scrap_slurry_max = 50
+    architectural_scrap_slurry_min = 35
+    architectural_scrap_slurry_max = 55
 end
 
 -- Innate quality setting
@@ -56,6 +56,14 @@ local scrap_reprocessing_recipe = {
     type = "recipe",
     name = "sr-scrap-reprocessing",
     category = "reprocessor",
+    surface_conditions =
+    {
+      {
+        property = "magnetic-field",
+        min = 99,
+        max = 99
+      }
+    },
     subgroup = "fulgora-processes",
     order = "a[trash]-b[scrap-reprocessing]",
     icons = {
@@ -86,13 +94,13 @@ local scrap_reprocessing_recipe = {
     energy_required = 0.5,
     ingredients = {
         {type = "item", name = "scrap", amount = 15},
-        {type = "fluid", name = "water", amount = 20}
+        {type = "fluid", name = "water", amount = 22}
     },
     results = {
         {type = "item", name = "sr-electronic-scrap",     amount_min = 5, amount_max = 15, probability = 0.75, show_details_in_recipe_tooltip = false},
         {type = "item", name = "sr-metallic-scrap",       amount_min = 5, amount_max = 15, probability = 0.75, show_details_in_recipe_tooltip = false},
         {type = "item", name = "sr-architectural-scrap",  amount_min = 5, amount_max = 15, probability = 0.75, show_details_in_recipe_tooltip = false},
-        {type = "fluid", name = "sr-mineral-slurry",      amount_min = 20, amount_max = 40, show_details_in_recipe_tooltip = false}
+        {type = "fluid", name = "sr-mineral-slurry",      amount_min = 10, amount_max = 20, show_details_in_recipe_tooltip = false}
     },
     allow_productivity = true
 }
@@ -102,6 +110,14 @@ local electronic_scrap_reprocessing_recipe = {
     type = "recipe",
     name = "sr-electronic-scrap-reprocessing",
     category = "reprocessor",
+    surface_conditions =
+    {
+      {
+        property = "magnetic-field",
+        min = 99,
+        max = 99
+      }
+    },
     subgroup = "fulgora-processes",
     order = "a[trash]-c[electronic-scrap-reprocessing]",
     icons = {
@@ -128,13 +144,13 @@ local electronic_scrap_reprocessing_recipe = {
     energy_required = 1,
     ingredients = {
         {type = "item", name = "sr-electronic-scrap", amount = 10},
-        {type = "fluid", name = "water", amount = 10}
+        {type = "fluid", name = "water", amount = 8}
     },
     results = {
         {type = "item", name = "processing-unit",       amount_min = 5, amount_max = 7, probability = 0.25, show_details_in_recipe_tooltip = false},
         {type = "item", name = "advanced-circuit",      amount_min = 10, amount_max = 18, probability = 0.15, show_details_in_recipe_tooltip = false},
         {type = "item", name = "battery",               amount_min = 4, amount_max = 12, probability = 0.3, show_details_in_recipe_tooltip = false},
-        {type = "fluid", name = "sr-mineral-slurry",    amount_min = 10, amount_max = 20, show_details_in_recipe_tooltip = false}
+        {type = "fluid", name = "sr-mineral-slurry",    amount_min = 15, amount_max = 25, show_details_in_recipe_tooltip = false}
     },
     allow_productivity = true
 }
@@ -183,6 +199,14 @@ local metallic_scrap_reprocessing_recipe = {
     type = "recipe",
     name = "sr-metallic-scrap-reprocessing",
     category = "reprocessor",
+    surface_conditions =
+    {
+      {
+        property = "magnetic-field",
+        min = 99,
+        max = 99
+      }
+    },
     subgroup = "fulgora-processes",
     order = "a[trash]-d[metallic-scrap-reprocessing]",
     icons = {
@@ -209,13 +233,13 @@ local metallic_scrap_reprocessing_recipe = {
     energy_required = 1,
     ingredients = {
         {type = "item", name = "sr-metallic-scrap", amount = 10},
-        {type = "fluid", name = "water", amount = 10}
+        {type = "fluid", name = "water", amount = 8}
     },
     results = {
         {type = "item", name = "steel-plate",           amount_min = 5, amount_max = 15, probability = 0.2, show_details_in_recipe_tooltip = false},
         {type = "item", name = "iron-gear-wheel",       amount_min = 15, amount_max = 45, probability = 0.3, show_details_in_recipe_tooltip = false},
         {type = "item", name = "copper-cable",          amount_min = 10, amount_max = 30, probability = 0.1, show_details_in_recipe_tooltip = false},
-        {type = "fluid", name = "sr-mineral-slurry",    amount_min = 10, amount_max = 20, show_details_in_recipe_tooltip = false}
+        {type = "fluid", name = "sr-mineral-slurry",    amount_min = 15, amount_max = 25, show_details_in_recipe_tooltip = false}
     },
     allow_productivity = true
 }
@@ -264,6 +288,14 @@ local architectural_scrap_reprocessing_recipe_vanilla = {
     type = "recipe",
     name = "sr-architectural-scrap-reprocessing",
     category = "reprocessor",
+    surface_conditions =
+    {
+      {
+        property = "magnetic-field",
+        min = 99,
+        max = 99
+      }
+    },
     subgroup = "fulgora-processes",
     order = "a[trash]-e[architectural-scrap-reprocessing]",
     icons = {
@@ -290,13 +322,13 @@ local architectural_scrap_reprocessing_recipe_vanilla = {
     energy_required = 1,
     ingredients = {
         {type = "item", name = "sr-architectural-scrap", amount = 10},
-        {type = "fluid", name = "water", amount = 10}
+        {type = "fluid", name = "water", amount = 8}
     },
     results = {
         {type = "item", name = "low-density-structure",   amount_min = 3, amount_max = 9, probability = 0.1, show_details_in_recipe_tooltip = false},
         {type = "item", name = "concrete",                amount_min = 10, amount_max = 30, probability = 0.12, show_details_in_recipe_tooltip = false},
         {type = "item", name = "ice",                     amount_min = 10, amount_max = 30, probability = 0.12, show_details_in_recipe_tooltip = false},
-        {type = "fluid", name = "sr-mineral-slurry",      amount_min = 10, amount_max = 20, show_details_in_recipe_tooltip = false}
+        {type = "fluid", name = "sr-mineral-slurry",      amount_min = 15, amount_max = 25, show_details_in_recipe_tooltip = false}
     },
     allow_productivity = true
 }
@@ -306,6 +338,14 @@ local architectural_scrap_reprocessing_recipe = {
     type = "recipe",
     name = "sr-architectural-scrap-reprocessing",
     category = "reprocessor",
+    surface_conditions =
+    {
+      {
+        property = "magnetic-field",
+        min = 99,
+        max = 99
+      }
+    },
     subgroup = "fulgora-processes",
     order = "a[trash]-e[architectural-scrap-reprocessing]",
     icons = {
@@ -332,7 +372,7 @@ local architectural_scrap_reprocessing_recipe = {
     energy_required = 1,
     ingredients = {
         {type = "item", name = "sr-architectural-scrap", amount = 10},
-        {type = "fluid", name = "water", amount = 10}
+        {type = "fluid", name = "water", amount = 8}
     },
     results = {
         {type = "item", name = "low-density-structure", amount_min = 3, amount_max = 9, probability = 0.1, show_details_in_recipe_tooltip = false},

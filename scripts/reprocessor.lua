@@ -180,23 +180,48 @@ function update_recipe(new_recipe, recipe_quality, reprocessor_loaders)
     for i, product in pairs(new_recipe.products) do     -- Count the number of solid products and filter as long as there are three or fewer
         if product.type == "item" then
             item_product_count = item_product_count +1
+            local item_prototype = prototypes.item[product.name]    -- Get the prototype to check for spoil results
             if item_product_count == 1 then             -- Set the first output loader to the first solid product
                 reprocessor_loaders.output_loader_1.set_filter(1, {
                     name = new_recipe.products[i].name,
                     comparator = ">="
                 })
+                if item_prototype.spoil_result then     -- Inlude the spoil result in the filter if there is one
+                    reprocessor_loaders.output_loader_1.set_filter(2, {
+                        name = item_prototype.spoil_result.name,
+                        comparator = ">="
+                    })
+                else
+                    reprocessor_loaders.output_loader_1.set_filter(2, nil)
+                end
                 reprocessor_loaders.output_loader_1.loader_filter_mode = "whitelist"
             elseif item_product_count == 2 then         -- Set the second output loader to the second solid product
                 reprocessor_loaders.output_loader_2.set_filter(1, {
                     name = new_recipe.products[i].name,
                     comparator = ">="
                 })
+                if item_prototype.spoil_result then     -- Inlude the spoil result in the filter if there is one
+                    reprocessor_loaders.output_loader_2.set_filter(2, {
+                        name = item_prototype.spoil_result.name,
+                        comparator = ">="
+                    })
+                else
+                    reprocessor_loaders.output_loader_2.set_filter(2, nil)
+                end
                 reprocessor_loaders.output_loader_2.loader_filter_mode = "whitelist"
             elseif item_product_count == 3 then         -- Set the third output loader to the third solid product
                 reprocessor_loaders.output_loader_3.set_filter(1, {
                     name = new_recipe.products[i].name,
                     comparator = ">="
                 })
+                if item_prototype.spoil_result then     -- Inlude the spoil result in the filter if there is one
+                    reprocessor_loaders.output_loader_3.set_filter(2, {
+                        name = item_prototype.spoil_result.name,
+                        comparator = ">="
+                    })
+                else
+                    reprocessor_loaders.output_loader_3.set_filter(2, nil)
+                end
                 reprocessor_loaders.output_loader_3.loader_filter_mode = "whitelist"
             elseif item_product_count > 3 then          -- Someone added a recipe with too many ingredients. Give up! Filter nothing!
                 reprocessor_loaders.output_loader_1.set_filter(1, nil)
