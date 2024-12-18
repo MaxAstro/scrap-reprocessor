@@ -14,6 +14,7 @@ Date: ????
     - Mineral slurry can now be barrelled, to facilitate advanced reprocessor recipes that require interplanetary logistics
   Bugfixes:
     - Mineral slurry separation is no longer allowed to be used to calculate recipe costs in the crafting menu
+    - Input loader no longer loses its filter when the reprocessor is rotated
   Modding:
     - Reprocessor output loaders now include spoil results in their filters, to account for recipes with spoilage
 ---------------------------------------------------------------------------------------------------

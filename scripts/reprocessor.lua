@@ -34,15 +34,19 @@ function align_loaders(scrap_reprocessor, reprocessor_loaders)
     reprocessor_loaders = reprocessor_loaders or {}
     local input_loader_offset_x = 0
     local input_loader_offset_y = 0
+    local input_loader_filter = nil
     local output_loader_1_offset_x = 0
     local output_loader_1_offset_y = 0
     local output_loader_1_filter = nil
+    local output_loader_1_filter_2 = nil
     local output_loader_2_offset_x = 0
     local output_loader_2_offset_y = 0
     local output_loader_2_filter = nil
+    local output_loader_2_filter_2 = nil
     local output_loader_3_offset_x = 0
     local output_loader_3_offset_y = 0
     local output_loader_3_filter = nil
+    local output_loader_3_filter_2 = nil
     if scrap_reprocessor.direction == defines.direction.north then
         input_loader_offset_x = 1
         input_loader_offset_y = 2
@@ -81,18 +85,22 @@ function align_loaders(scrap_reprocessor, reprocessor_loaders)
         output_loader_3_offset_y = 1
     end
     if reprocessor_loaders.input_loader then
+        input_loader_filter = reprocessor_loaders.input_loader.get_filter(1)
         reprocessor_loaders.input_loader.destroy()          -- Loaders can't be teleported
     end
     if reprocessor_loaders.output_loader_1 then
         output_loader_1_filter = reprocessor_loaders.output_loader_1.get_filter(1)
+        output_loader_1_filter_2 = reprocessor_loaders.output_loader_1.get_filter(2)
         reprocessor_loaders.output_loader_1.destroy()
     end
     if reprocessor_loaders.output_loader_2 then
         output_loader_2_filter = reprocessor_loaders.output_loader_2.get_filter(1)
+        output_loader_2_filter_2 = reprocessor_loaders.output_loader_2.get_filter(2)
         reprocessor_loaders.output_loader_2.destroy()
     end
     if reprocessor_loaders.output_loader_3 then
         output_loader_3_filter = reprocessor_loaders.output_loader_3.get_filter(1)
+        output_loader_3_filter_2 = reprocessor_loaders.output_loader_3.get_filter(2)
         reprocessor_loaders.output_loader_3.destroy()
     end
     reprocessor_loaders.input_loader = scrap_reprocessor.surface.create_entity{
@@ -105,6 +113,9 @@ function align_loaders(scrap_reprocessor, reprocessor_loaders)
         operable = false,
         destructible = false
     }
+    if input_loader_filter then             -- Recreate the filters if they already existed
+        reprocessor_loaders.input_loader.set_filter(1, input_loader_filter)
+    end
     reprocessor_loaders.output_loader_1 = scrap_reprocessor.surface.create_entity{
         name = "sr-scrap-reprocessor-output-loader-1",
         force = scrap_reprocessor.force,
@@ -115,8 +126,11 @@ function align_loaders(scrap_reprocessor, reprocessor_loaders)
         operable = false,
         destructible = false
     }
-    if output_loader_1_filter then          -- Recreate the filters if they already existed
+    if output_loader_1_filter then          -- Recreate both regular and spoilage filters
         reprocessor_loaders.output_loader_1.set_filter(1, output_loader_1_filter)
+    end
+    if output_loader_1_filter_2 then
+        reprocessor_loaders.output_loader_1.set_filter(2, output_loader_1_filter_2)
     end
     reprocessor_loaders.output_loader_2 = scrap_reprocessor.surface.create_entity{
         name = "sr-scrap-reprocessor-output-loader-2",
@@ -131,6 +145,9 @@ function align_loaders(scrap_reprocessor, reprocessor_loaders)
     if output_loader_2_filter then
         reprocessor_loaders.output_loader_2.set_filter(1, output_loader_2_filter)
     end
+    if output_loader_2_filter_2 then
+        reprocessor_loaders.output_loader_2.set_filter(2, output_loader_2_filter_2)
+    end
     reprocessor_loaders.output_loader_3 = scrap_reprocessor.surface.create_entity{
         name = "sr-scrap-reprocessor-output-loader-3",
         force = scrap_reprocessor.force,
@@ -143,6 +160,9 @@ function align_loaders(scrap_reprocessor, reprocessor_loaders)
     }
     if output_loader_3_filter then
         reprocessor_loaders.output_loader_3.set_filter(1, output_loader_3_filter)
+    end
+    if output_loader_3_filter_2 then
+        reprocessor_loaders.output_loader_3.set_filter(2, output_loader_3_filter_2)
     end
 
     for _, stored_reprocessor in pairs(storage.scrap_reprocessors) do        -- Update the id array if needed

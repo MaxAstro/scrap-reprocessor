@@ -276,7 +276,7 @@ local scrap_reprocessor_input_loader = {
           }
         }
       },
-    filter_count = 1,
+    filter_count = 2,
     tile_width = 1,
     tile_height = 1,
     energy_source = {type = "void"},
