@@ -32,7 +32,7 @@ end
 local scrap_reprocessor_recipe = {
     type = "recipe",
     name = "sr-scrap-reprocessor",
-    category = "advanced-crafting",
+    categories = {"advanced-crafting"},
     icon = "__scrap-reprocessor__/graphics/icons/chemical-stager-icon.png",
     enabled = false,
     energy_required = 10, -- time to craft in seconds (at crafting speed 1)
@@ -55,7 +55,7 @@ local scrap_reprocessor_recipe_category = {
 local scrap_reprocessing_recipe = {
     type = "recipe",
     name = "sr-scrap-reprocessing",
-    category = "reprocessor",
+    categories = {"reprocessor"},
     surface_conditions =
     {
       {
@@ -68,7 +68,7 @@ local scrap_reprocessing_recipe = {
     order = "a[trash]-b[scrap-reprocessing]",
     icons = {
         {
-            icon = "__quality__/graphics/icons/recycling.png"
+            icon = "__recycler__/graphics/icons/recycling.png"
         },
         {
             icon = "__space-age__/graphics/icons/scrap.png",
@@ -85,7 +85,7 @@ local scrap_reprocessing_recipe = {
             scale = 0.3
         },
         {
-            icon = "__quality__/graphics/icons/recycling-top.png"
+            icon = "__recycler__/graphics/icons/recycling-top.png"
         }
     },
     enabled = false,
@@ -97,9 +97,9 @@ local scrap_reprocessing_recipe = {
         {type = "fluid", name = "water", amount = 22}
     },
     results = {
-        {type = "item", name = "sr-electronic-scrap",     amount_min = 5, amount_max = 15, probability = 0.75, show_details_in_recipe_tooltip = false},
-        {type = "item", name = "sr-metallic-scrap",       amount_min = 5, amount_max = 15, probability = 0.75, show_details_in_recipe_tooltip = false},
-        {type = "item", name = "sr-architectural-scrap",  amount_min = 5, amount_max = 15, probability = 0.75, show_details_in_recipe_tooltip = false},
+        {type = "item", name = "sr-electronic-scrap",     amount_min = 5, amount_max = 15, independent_probability = 0.75, show_details_in_recipe_tooltip = false},
+        {type = "item", name = "sr-metallic-scrap",       amount_min = 5, amount_max = 15, independent_probability = 0.75, show_details_in_recipe_tooltip = false},
+        {type = "item", name = "sr-architectural-scrap",  amount_min = 5, amount_max = 15, independent_probability = 0.75, show_details_in_recipe_tooltip = false},
         {type = "fluid", name = "sr-mineral-slurry",      amount_min = 10, amount_max = 20, show_details_in_recipe_tooltip = false}
     },
     allow_productivity = true
@@ -109,7 +109,7 @@ local scrap_reprocessing_recipe = {
 local electronic_scrap_reprocessing_recipe = {
     type = "recipe",
     name = "sr-electronic-scrap-reprocessing",
-    category = "reprocessor",
+    categories = {"reprocessor"},
     surface_conditions =
     {
       {
@@ -122,7 +122,7 @@ local electronic_scrap_reprocessing_recipe = {
     order = "a[trash]-c[electronic-scrap-reprocessing]",
     icons = {
         {
-            icon = "__quality__/graphics/icons/recycling.png"
+            icon = "__recycler__/graphics/icons/recycling.png"
         },
         {
             icon = "__space-age__/graphics/icons/scrap.png",
@@ -134,7 +134,7 @@ local electronic_scrap_reprocessing_recipe = {
             scale = 0.2
         },
         {
-            icon = "__quality__/graphics/icons/recycling-top.png"
+            icon = "__recycler__/graphics/icons/recycling-top.png"
         }
     },
     enabled = false,
@@ -147,9 +147,9 @@ local electronic_scrap_reprocessing_recipe = {
         {type = "fluid", name = "water", amount = 8}
     },
     results = {
-        {type = "item", name = "processing-unit",       amount_min = 5, amount_max = 7, probability = 0.25, show_details_in_recipe_tooltip = false},
-        {type = "item", name = "advanced-circuit",      amount_min = 10, amount_max = 18, probability = 0.15, show_details_in_recipe_tooltip = false},
-        {type = "item", name = "battery",               amount_min = 4, amount_max = 12, probability = 0.3, show_details_in_recipe_tooltip = false},
+        {type = "item", name = "processing-unit",       amount_min = 5, amount_max = 7, independent_probability = 0.25, show_details_in_recipe_tooltip = false},
+        {type = "item", name = "advanced-circuit",      amount_min = 10, amount_max = 18, independent_probability = 0.15, show_details_in_recipe_tooltip = false},
+        {type = "item", name = "battery",               amount_min = 4, amount_max = 12, independent_probability = 0.3, show_details_in_recipe_tooltip = false},
         {type = "fluid", name = "sr-mineral-slurry",    amount_min = 15, amount_max = 25, show_details_in_recipe_tooltip = false}
     },
     allow_productivity = true
@@ -159,12 +159,12 @@ local electronic_scrap_reprocessing_recipe = {
 local electronic_scrap_recycling_recipe = {
     type = "recipe",
     name = "sr-electronic-scrap-recycling",
-    category = "recycling-or-hand-crafting",
+    categories = {"hand-crafting","recycling"},
     subgroup = "fulgora-processes",
     order = "a[trash]-c[electronic-scrap-recycling]",
     icons = {
         {
-            icon = "__quality__/graphics/icons/recycling.png"
+            icon = "__recycler__/graphics/icons/recycling.png"
         },
         {
             icon = "__space-age__/graphics/icons/scrap.png",
@@ -176,7 +176,7 @@ local electronic_scrap_recycling_recipe = {
             scale = 0.2
         },
         {
-            icon = "__quality__/graphics/icons/recycling-top.png"
+            icon = "__recycler__/graphics/icons/recycling-top.png"
         }
     },
     enabled = false,
@@ -188,9 +188,9 @@ local electronic_scrap_recycling_recipe = {
         {type = "item", name = "sr-electronic-scrap", amount = 1}
     },
     results = {
-        {type = "item", name = "processing-unit",   amount_min = 1, amount_max = 3, probability = 0.03, show_details_in_recipe_tooltip = false},
-        {type = "item", name = "advanced-circuit",  amount_min = 1, amount_max = 3, probability = 0.05, show_details_in_recipe_tooltip = false},
-        {type = "item", name = "battery",           amount_min = 1, amount_max = 3, probability = 0.06, show_details_in_recipe_tooltip = false}
+        {type = "item", name = "processing-unit",   amount_min = 1, amount_max = 3, independent_probability = 0.03, show_details_in_recipe_tooltip = false},
+        {type = "item", name = "advanced-circuit",  amount_min = 1, amount_max = 3, independent_probability = 0.05, show_details_in_recipe_tooltip = false},
+        {type = "item", name = "battery",           amount_min = 1, amount_max = 3, independent_probability = 0.06, show_details_in_recipe_tooltip = false}
     }
 }
 
@@ -198,7 +198,7 @@ local electronic_scrap_recycling_recipe = {
 local metallic_scrap_reprocessing_recipe = {
     type = "recipe",
     name = "sr-metallic-scrap-reprocessing",
-    category = "reprocessor",
+    categories = {"reprocessor"},
     surface_conditions =
     {
       {
@@ -211,7 +211,7 @@ local metallic_scrap_reprocessing_recipe = {
     order = "a[trash]-d[metallic-scrap-reprocessing]",
     icons = {
         {
-            icon = "__quality__/graphics/icons/recycling.png"
+            icon = "__recycler__/graphics/icons/recycling.png"
         },
         {
             icon = "__space-age__/graphics/icons/scrap.png",
@@ -223,7 +223,7 @@ local metallic_scrap_reprocessing_recipe = {
             scale = 0.2
         },
         {
-            icon = "__quality__/graphics/icons/recycling-top.png"
+            icon = "__recycler__/graphics/icons/recycling-top.png"
         }
     },
     enabled = false,
@@ -236,9 +236,9 @@ local metallic_scrap_reprocessing_recipe = {
         {type = "fluid", name = "water", amount = 8}
     },
     results = {
-        {type = "item", name = "steel-plate",           amount_min = 5, amount_max = 15, probability = 0.2, show_details_in_recipe_tooltip = false},
-        {type = "item", name = "iron-gear-wheel",       amount_min = 15, amount_max = 45, probability = 0.3, show_details_in_recipe_tooltip = false},
-        {type = "item", name = "copper-cable",          amount_min = 10, amount_max = 30, probability = 0.1, show_details_in_recipe_tooltip = false},
+        {type = "item", name = "steel-plate",           amount_min = 5, amount_max = 15, independent_probability = 0.2, show_details_in_recipe_tooltip = false},
+        {type = "item", name = "iron-gear-wheel",       amount_min = 15, amount_max = 45, independent_probability = 0.3, show_details_in_recipe_tooltip = false},
+        {type = "item", name = "copper-cable",          amount_min = 10, amount_max = 30, independent_probability = 0.1, show_details_in_recipe_tooltip = false},
         {type = "fluid", name = "sr-mineral-slurry",    amount_min = 15, amount_max = 25, show_details_in_recipe_tooltip = false}
     },
     allow_productivity = true
@@ -248,12 +248,12 @@ local metallic_scrap_reprocessing_recipe = {
 local metallic_scrap_recycling_recipe = {
     type = "recipe",
     name = "sr-metallic-scrap-recycling",
-    category = "recycling-or-hand-crafting",
+    categories = {"hand-crafting","recycling"},
     subgroup = "fulgora-processes",
     order = "a[trash]-d[metallic-scrap-recycling]",
     icons = {
         {
-            icon = "__quality__/graphics/icons/recycling.png"
+            icon = "__recycler__/graphics/icons/recycling.png"
         },
         {
             icon = "__space-age__/graphics/icons/scrap.png",
@@ -265,7 +265,7 @@ local metallic_scrap_recycling_recipe = {
             scale = 0.2
         },
         {
-            icon = "__quality__/graphics/icons/recycling-top.png"
+            icon = "__recycler__/graphics/icons/recycling-top.png"
         }
     },
     enabled = false,
@@ -277,9 +277,9 @@ local metallic_scrap_recycling_recipe = {
         {type = "item", name = "sr-metallic-scrap", amount = 1}
     },
     results = {
-        {type = "item", name = "steel-plate",       amount_min = 1, amount_max = 3, probability = 0.05, show_details_in_recipe_tooltip = false},
-        {type = "item", name = "iron-gear-wheel",   amount_min = 1, amount_max = 3, probability = 0.25, show_details_in_recipe_tooltip = false},
-        {type = "item", name = "copper-cable",      amount_min = 1, amount_max = 3, probability = 0.04, show_details_in_recipe_tooltip = false}
+        {type = "item", name = "steel-plate",       amount_min = 1, amount_max = 3, independent_probability = 0.05, show_details_in_recipe_tooltip = false},
+        {type = "item", name = "iron-gear-wheel",   amount_min = 1, amount_max = 3, independent_probability = 0.25, show_details_in_recipe_tooltip = false},
+        {type = "item", name = "copper-cable",      amount_min = 1, amount_max = 3, independent_probability = 0.04, show_details_in_recipe_tooltip = false}
     }
 }
 
@@ -287,7 +287,7 @@ local metallic_scrap_recycling_recipe = {
 local architectural_scrap_reprocessing_recipe_vanilla = {
     type = "recipe",
     name = "sr-architectural-scrap-reprocessing",
-    category = "reprocessor",
+    categories = {"reprocessor"},
     surface_conditions =
     {
       {
@@ -300,7 +300,7 @@ local architectural_scrap_reprocessing_recipe_vanilla = {
     order = "a[trash]-e[architectural-scrap-reprocessing]",
     icons = {
         {
-            icon = "__quality__/graphics/icons/recycling.png"
+            icon = "__recycler__/graphics/icons/recycling.png"
         },
         {
             icon = "__space-age__/graphics/icons/scrap.png",
@@ -312,7 +312,7 @@ local architectural_scrap_reprocessing_recipe_vanilla = {
             scale = 0.2
         },
         {
-            icon = "__quality__/graphics/icons/recycling-top.png"
+            icon = "__recycler__/graphics/icons/recycling-top.png"
         }
     },
     enabled = false,
@@ -325,9 +325,9 @@ local architectural_scrap_reprocessing_recipe_vanilla = {
         {type = "fluid", name = "water", amount = 8}
     },
     results = {
-        {type = "item", name = "low-density-structure",   amount_min = 3, amount_max = 9, probability = 0.1, show_details_in_recipe_tooltip = false},
-        {type = "item", name = "concrete",                amount_min = 10, amount_max = 30, probability = 0.12, show_details_in_recipe_tooltip = false},
-        {type = "item", name = "ice",                     amount_min = 10, amount_max = 30, probability = 0.12, show_details_in_recipe_tooltip = false},
+        {type = "item", name = "low-density-structure",   amount_min = 3, amount_max = 9, independent_probability = 0.1, show_details_in_recipe_tooltip = false},
+        {type = "item", name = "concrete",                amount_min = 10, amount_max = 30, independent_probability = 0.12, show_details_in_recipe_tooltip = false},
+        {type = "item", name = "ice",                     amount_min = 10, amount_max = 30, independent_probability = 0.12, show_details_in_recipe_tooltip = false},
         {type = "fluid", name = "sr-mineral-slurry",      amount_min = 15, amount_max = 25, show_details_in_recipe_tooltip = false}
     },
     allow_productivity = true
@@ -337,7 +337,7 @@ local architectural_scrap_reprocessing_recipe_vanilla = {
 local architectural_scrap_reprocessing_recipe = {
     type = "recipe",
     name = "sr-architectural-scrap-reprocessing",
-    category = "reprocessor",
+    categories = {"reprocessor"},
     surface_conditions =
     {
       {
@@ -350,7 +350,7 @@ local architectural_scrap_reprocessing_recipe = {
     order = "a[trash]-e[architectural-scrap-reprocessing]",
     icons = {
         {
-            icon = "__quality__/graphics/icons/recycling.png"
+            icon = "__recycler__/graphics/icons/recycling.png"
         },
         {
             icon = "__space-age__/graphics/icons/scrap.png",
@@ -362,7 +362,7 @@ local architectural_scrap_reprocessing_recipe = {
             scale = 0.2
         },
         {
-            icon = "__quality__/graphics/icons/recycling-top.png"
+            icon = "__recycler__/graphics/icons/recycling-top.png"
         }
     },
     enabled = false,
@@ -375,9 +375,9 @@ local architectural_scrap_reprocessing_recipe = {
         {type = "fluid", name = "water", amount = 8}
     },
     results = {
-        {type = "item", name = "low-density-structure", amount_min = 3, amount_max = 9, probability = 0.1, show_details_in_recipe_tooltip = false},
-        {type = "item", name = "stone-brick",           amount_min = 10, amount_max = 30, probability = 0.12, show_details_in_recipe_tooltip = false},
-        {type = "item", name = "iron-stick",            amount_min = 5, amount_max = 15, probability = 0.24, show_details_in_recipe_tooltip = false},
+        {type = "item", name = "low-density-structure", amount_min = 3, amount_max = 9, independent_probability = 0.1, show_details_in_recipe_tooltip = false},
+        {type = "item", name = "stone-brick",           amount_min = 10, amount_max = 30, independent_probability = 0.12, show_details_in_recipe_tooltip = false},
+        {type = "item", name = "iron-stick",            amount_min = 5, amount_max = 15, independent_probability = 0.24, show_details_in_recipe_tooltip = false},
         {type = "fluid", name = "sr-mineral-slurry",    amount_min = architectural_scrap_slurry_min, amount_max = architectural_scrap_slurry_max, show_details_in_recipe_tooltip = false}
     },
     allow_productivity = true
@@ -387,12 +387,12 @@ local architectural_scrap_reprocessing_recipe = {
 local architectural_scrap_recycling_recipe_vanilla = {
     type = "recipe",
     name = "sr-architectural-scrap-recycling",
-    category = "recycling-or-hand-crafting",
+    categories = {"hand-crafting","recycling"},
     subgroup = "fulgora-processes",
     order = "a[trash]-e[architectural-scrap-recycling]",
     icons = {
         {
-            icon = "__quality__/graphics/icons/recycling.png"
+            icon = "__recycler__/graphics/icons/recycling.png"
         },
         {
             icon = "__space-age__/graphics/icons/scrap.png",
@@ -404,7 +404,7 @@ local architectural_scrap_recycling_recipe_vanilla = {
             scale = 0.2
         },
         {
-            icon = "__quality__/graphics/icons/recycling-top.png"
+            icon = "__recycler__/graphics/icons/recycling-top.png"
         }
     },
     enabled = false,
@@ -416,9 +416,9 @@ local architectural_scrap_recycling_recipe_vanilla = {
         {type = "item", name = "sr-architectural-scrap", amount = 1}
     },
     results = {
-        {type = "item", name = "low-density-structure", amount_min = 1, amount_max = 3, probability = 0.015, show_details_in_recipe_tooltip = false},
-        {type = "item", name = "concrete",              amount_min = 1, amount_max = 3, probability = 0.07, show_details_in_recipe_tooltip = false},
-        {type = "item", name = "ice",                   amount_min = 1, amount_max = 3, probability = 0.06, show_details_in_recipe_tooltip = false}
+        {type = "item", name = "low-density-structure", amount_min = 1, amount_max = 3, independent_probability = 0.015, show_details_in_recipe_tooltip = false},
+        {type = "item", name = "concrete",              amount_min = 1, amount_max = 3, independent_probability = 0.07, show_details_in_recipe_tooltip = false},
+        {type = "item", name = "ice",                   amount_min = 1, amount_max = 3, independent_probability = 0.06, show_details_in_recipe_tooltip = false}
     }
 }
 
@@ -426,12 +426,12 @@ local architectural_scrap_recycling_recipe_vanilla = {
 local architectural_scrap_recycling_recipe = {
     type = "recipe",
     name = "sr-architectural-scrap-recycling",
-    category = "recycling-or-hand-crafting",
+    categories = {"hand-crafting","recycling"},
     subgroup = "fulgora-processes",
     order = "a[trash]-e[architectural-scrap-recycling]",
     icons = {
         {
-            icon = "__quality__/graphics/icons/recycling.png"
+            icon = "__recycler__/graphics/icons/recycling.png"
         },
         {
             icon = "__space-age__/graphics/icons/scrap.png",
@@ -443,7 +443,7 @@ local architectural_scrap_recycling_recipe = {
             scale = 0.2
         },
         {
-            icon = "__quality__/graphics/icons/recycling-top.png"
+            icon = "__recycler__/graphics/icons/recycling-top.png"
         }
     },
     enabled = false,
@@ -455,9 +455,9 @@ local architectural_scrap_recycling_recipe = {
         {type = "item", name = "sr-architectural-scrap", amount = 1}
     },
     results = {
-        {type = "item", name = "low-density-structure", amount_min = 1, amount_max = 3, probability = 0.015, show_details_in_recipe_tooltip = false},
-        {type = "item", name = "stone-brick",           amount_min = 1, amount_max = 3, probability = 0.07, show_details_in_recipe_tooltip = false},
-        {type = "item", name = "iron-stick",            amount_min = 1, amount_max = 3, probability = 0.06, show_details_in_recipe_tooltip = false}
+        {type = "item", name = "low-density-structure", amount_min = 1, amount_max = 3, independent_probability = 0.015, show_details_in_recipe_tooltip = false},
+        {type = "item", name = "stone-brick",           amount_min = 1, amount_max = 3, independent_probability = 0.07, show_details_in_recipe_tooltip = false},
+        {type = "item", name = "iron-stick",            amount_min = 1, amount_max = 3, independent_probability = 0.06, show_details_in_recipe_tooltip = false}
     }
 }
 
@@ -465,7 +465,7 @@ local architectural_scrap_recycling_recipe = {
 local mineral_slurry_separation_recipe = {
     type = "recipe",
     name = "sr-mineral-slurry-separation",
-    category = "chemistry",
+    categories = {"chemistry"},
     subgroup = "fulgora-processes",
     order = "a[trash]-f[mineral-slurry-separation]",
     icons = {
@@ -526,7 +526,7 @@ local mineral_slurry_separation_recipe = {
 local mineral_slurry_separation_recipe_with_iron = {
     type = "recipe",
     name = "sr-mineral-slurry-separation",
-    category = "chemistry",
+    categories = {"chemistry"},
     subgroup = "fulgora-processes",
     order = "a[trash]-f[mineral-slurry-separation]",
     icons = {

@@ -3,7 +3,7 @@
 local slurry_culturization = {
     type = "recipe",
     name = "sr-slurry-culturization",
-    category = "organic",
+    categories = {"organic"},
     surface_conditions =
     {
         {
@@ -60,7 +60,7 @@ local slurry_culturization = {
 local scrap_bioleech_wash = {
     type = "recipe",
     name = "sr-scrap-bioleech-wash",
-    category = "reprocessor",
+    categories = {"reprocessor"},
     surface_conditions =
     {
         {
@@ -73,7 +73,7 @@ local scrap_bioleech_wash = {
     order = "f[reprocessing]-b[scrap-bioleech-wash]",
     icons = {
         {
-            icon = "__quality__/graphics/icons/recycling.png"
+            icon = "__recycler__/graphics/icons/recycling.png"
         },
         {
             icon = "__space-age__/graphics/icons/scrap.png",
@@ -90,7 +90,7 @@ local scrap_bioleech_wash = {
             scale = 0.3
         },
         {
-            icon = "__quality__/graphics/icons/recycling-top.png"
+            icon = "__recycler__/graphics/icons/recycling-top.png"
         },
         {
             icon = "__quality__/graphics/icons/quality-module-3.png",
@@ -122,7 +122,7 @@ local scrap_bioleech_wash = {
 local tungsten_bioleech_wash = {
     type = "recipe",
     name = "sr-tungsten-bioleech-wash",
-    category = "reprocessor",
+    categories = {"reprocessor"},
     surface_conditions =
     {
         {
@@ -135,7 +135,7 @@ local tungsten_bioleech_wash = {
     order = "f[reprocessing]-c[tungsten-bioleech-wash]",
     icons = {
         {
-            icon = "__quality__/graphics/icons/recycling.png"
+            icon = "__recycler__/graphics/icons/recycling.png"
         },
         {
             icon = "__space-age__/graphics/icons/tungsten-ore.png",
@@ -152,7 +152,7 @@ local tungsten_bioleech_wash = {
             scale = 0.3
         },
         {
-            icon = "__quality__/graphics/icons/recycling-top.png"
+            icon = "__recycler__/graphics/icons/recycling-top.png"
         },
         {
             icon = "__quality__/graphics/icons/quality-module-3.png",
@@ -184,7 +184,7 @@ local tungsten_bioleech_wash = {
 local uranium_bioleech_wash = {
     type = "recipe",
     name = "sr-uranium-bioleech-wash",
-    category = "reprocessor",
+    categories = {"reprocessor"},
     surface_conditions =
     {
         {
@@ -197,7 +197,7 @@ local uranium_bioleech_wash = {
     order = "f[reprocessing]-d[uranium-bioleech-wash]",
     icons = {
         {
-            icon = "__quality__/graphics/icons/recycling.png"
+            icon = "__recycler__/graphics/icons/recycling.png"
         },
         {
             icon = "__base__/graphics/icons/uranium-ore.png",
@@ -214,7 +214,7 @@ local uranium_bioleech_wash = {
             scale = 0.3
         },
         {
-            icon = "__quality__/graphics/icons/recycling-top.png"
+            icon = "__recycler__/graphics/icons/recycling-top.png"
         },
         {
             icon = "__quality__/graphics/icons/quality-module-3.png",
@@ -246,7 +246,7 @@ local uranium_bioleech_wash = {
 local waste_filtering = {
     type = "recipe",
     name = "sr-biological-waste-filtering",
-    category = "chemistry",
+    categories = {"chemistry"},
     surface_conditions =
     {
         {
@@ -301,7 +301,7 @@ local waste_filtering = {
 local lava_agglomeration = {
     type = "recipe",
     name = "sr-lava-agglomeration",
-    category = "reprocessor",
+    categories = {"reprocessor"},
     surface_conditions =
     {
         {
@@ -314,7 +314,7 @@ local lava_agglomeration = {
     order = "a[melting]-b[lava-a]",
     icons = {
         {
-            icon = "__quality__/graphics/icons/recycling.png"
+            icon = "__recycler__/graphics/icons/recycling.png"
         },
         {
             icon = "__space-age__/graphics/icons/metallic-asteroid-chunk.png",
@@ -334,7 +334,7 @@ local lava_agglomeration = {
             scale = 0.3
         },
         {
-            icon = "__quality__/graphics/icons/recycling-top.png"
+            icon = "__recycler__/graphics/icons/recycling-top.png"
         }
     },
     enabled = false,
@@ -358,7 +358,7 @@ local lava_agglomeration = {
 local iron_scoria_purification = {
     type = "recipe",
     name = "sr-iron-scoria-purification",
-    category = "metallurgy",
+    categories = {"metallurgy"},
     surface_conditions =
     {
         {
@@ -400,7 +400,7 @@ local iron_scoria_purification = {
 local copper_scoria_purification = {
     type = "recipe",
     name = "sr-copper-scoria-purification",
-    category = "metallurgy",
+    categories = {"metallurgy"},
     surface_conditions =
     {
         {
@@ -442,7 +442,7 @@ local copper_scoria_purification = {
 local mineral_scoria_melting = {
     type = "recipe",
     name = "sr-mineral-scoria-melting",
-    category = "metallurgy",
+    categories = {"metallurgy"},
     surface_conditions =
     {
         {
@@ -485,7 +485,7 @@ local mineral_scoria_melting = {
 local iron_chunk_smelting = {
     type = "recipe",
     name = "sr-iron-chunk-smelting",
-    category = "smelting",
+    categories = {"smelting"},
     subgroup = "vulcanus-processes",
     order = "a[melting]-d[e-iron-chunk]",
     enabled = true,
@@ -501,7 +501,7 @@ local iron_chunk_smelting = {
 local copper_chunk_smelting = {
     type = "recipe",
     name = "sr-copper-chunk-smelting",
-    category = "smelting",
+    categories = {"smelting"},
     subgroup = "vulcanus-processes",
     order = "a[melting]-d[f-copper-chunk]",
     enabled = true,
@@ -517,7 +517,7 @@ local copper_chunk_smelting = {
 local mineral_chunk_recycling = {
     type = "recipe",
     name = "sr-mineral-chunk-recycling",
-    category = "recycling",
+    categories = {"recycling"},
     subgroup = "vulcanus-processes",
     order = "a[melting]-d[g-mineral-chunk]",
     enabled = true,

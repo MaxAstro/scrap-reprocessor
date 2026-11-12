@@ -73,7 +73,7 @@ local advanced_reprocessing_tech = {
 	icon_size = 256,
 	icons = {
 		{
-            icon = "__quality__/graphics/icons/recycling.png"
+            icon = "__recycler__/graphics/icons/recycling.png"
         },
         {
             icon = "__space-age__/graphics/icons/vulcanus.png",
@@ -91,7 +91,7 @@ local advanced_reprocessing_tech = {
             scale = 1
         },
         {
-            icon = "__quality__/graphics/icons/recycling-top.png"
+            icon = "__recycler__/graphics/icons/recycling-top.png"
         }
 	},
 	effects =

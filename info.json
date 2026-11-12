@@ -1,11 +1,11 @@
 {
   "name": "scrap-reprocessor",
-  "version": "1.0.3",
+  "version": "2.0.0",
   "title": "Scrap Reprocessor",
   "author": "MaxAstro",
-  "factorio_version": "2.0",
+  "factorio_version": "2.1",
   "dependencies": [
-    "base >= 2.0.20",
+    "base >= 2.1.00",
     "space-age",
     "quality"
   ],

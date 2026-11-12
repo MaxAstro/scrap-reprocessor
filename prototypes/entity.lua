@@ -116,7 +116,7 @@ local scrap_reprocessor = {
     impact_category = "metal-large",
     working_sound =
     {
-        sound = { filename = "__quality__/sound/recycler/recycler-loop.ogg" },
+        sound = { filename = "__recycler__/sound/recycler/recycler-loop.ogg" },
         fade_in_ticks = 4,
         fade_out_ticks = 20
     },
